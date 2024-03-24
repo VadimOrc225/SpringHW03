@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Page of Reader</title>
+</head>
+<body>
+
+<h2 th:text="${reader.getName()}"></h2>
+
+<br>
+
+<table>
+  <caption><b>Данный читатель имеет на руках следующие книги:</b></caption>
+  <tr>
+    <td>Id</td>
+    <th>Title</th>
+  </tr>
+  <tr th:each="book: ${books}">
+    <td th:text="${book.getId()}"></td>
+    <td th:text="${book.getName()}"></td>
+  </tr>
+</table>
+
+<style>
+  table {
+      border: 2px solid black;
+
+  }
+  td {
+      border: 2px solid black;
+  }
+  th {
+      border: 2px solid black;
+  }
+
+</style>
+
+</body>
+</html>

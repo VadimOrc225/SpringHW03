@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Issues</title>
+</head>
+<body>
+
+<table>
+  <caption><b>Полный список выдач</b></caption>
+  <tr>
+    <td>Id</td>
+    <th>Id читателя</th>
+    <th>Id книги</th>
+    <th>Выдана</th>
+    <th>Возвращена</th>
+  </tr>
+  <tr th:each="issue: ${issues}">
+    <td th:text="${issue.getId()}"></td>
+    <td th:text="${issue.getIdReader()}"></td>
+    <td th:text="${issue.getIdBook()}"></td>
+    <td th:text="${issue.getTime1()}"></td>
+    <td th:text="${issue.getTime2()}"></td>
+  </tr>
+</table>
+
+<style>
+  table {
+      border: 2px solid black;
+  }
+  td {
+      border: 2px solid black;
+  }
+  th {
+      border: 2px solid black;
+  }
+
+</style>
+
+</body>
+</html>

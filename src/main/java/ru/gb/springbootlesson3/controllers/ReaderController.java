@@ -71,12 +71,15 @@ public class ReaderController {
         }
     }
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteReaderById(@PathVariable long id){
-        final boolean deleted = readerService.deleteReader(id);
+    public ResponseEntity<Void> deleteReaderById(@PathVariable long id) {
+
         log.info("Поступил запрос на удаление пользователя с Id: " + id);
 
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        try {
+            readerService.deleteReader(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

@@ -54,12 +54,14 @@ public class BookController {
         }
     }
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteBookById(@PathVariable long id){
-        final boolean deleted = bookService.deleteBook(id);
+    public ResponseEntity<Void> deleteBookById(@PathVariable long id){
         log.info("Поступил запрос на удаление книги с Id: " + id);
 
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        try {
+            bookService.deleteBook(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

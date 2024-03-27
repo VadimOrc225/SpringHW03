@@ -1,16 +1,24 @@
 package ru.gb.springbootlesson3.entity;
 
 import lombok.Data;
-
+import jakarta.persistence.*;
+@Entity
+@Table(name = "book")
 @Data
 public class Book {
-    private static long genId;
 
-    private final long id;
-    private final String name;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(name = "title")
+    private String name;
+
+    public Book() {
+    }
 
     public Book(String name) {
-        id = genId++;
         this.name = name;
     }
 }

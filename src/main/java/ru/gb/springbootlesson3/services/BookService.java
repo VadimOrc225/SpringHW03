@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.gb.springbootlesson3.entity.Book;
 import ru.gb.springbootlesson3.repository.JpaBookRepository;
+
+import javax.net.ssl.SSLSession;
 import java.util.List;
 
 
@@ -35,5 +37,9 @@ public class BookService {
     public void deleteBook(long id){
         Book book = bookRepository.getReferenceById(id);
         bookRepository.delete(book);
+    }
+
+    public Book findByName(String title){
+        return bookRepository.findByName(title);
     }
 }
